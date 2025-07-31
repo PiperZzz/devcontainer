@@ -1,0 +1,43 @@
+{
+    "name": "Java + Node.js Full Stack Dev",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "17",
+            "installMaven": true,
+            "installGradle": true
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "18"
+        },
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "vmware.vscode-spring-boot",
+                "bradlc.vscode-tailwindcss",
+                "esbenp.prettier-vscode",
+                "ms-vscode.vscode-typescript-next",
+                "formulahendry.auto-rename-tag",
+                "christian-kohler.path-intellisense"
+            ],
+            "settings": {
+                "java.home": "/usr/local/sdkman/candidates/java/current",
+                "spring-boot.ls.java.home": "/usr/local/sdkman/candidates/java/current"
+            }
+        }
+    },
+    "forwardPorts": [
+        8080,  // Spring Boot 默认端口
+        3000,  // React 开发服务器端口
+        5432,  // PostgreSQL (如果需要)
+        3306   // MySQL (如果需要)
+    ],
+    "postCreateCommand": "npm install -g yarn pnpm @angular/cli create-react-app",
+    "remoteUser": "vscode"
+}
