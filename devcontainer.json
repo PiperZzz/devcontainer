@@ -1,5 +1,5 @@
 {
-    "name": "Java Spring Boot + React Full Stack",
+    "name": "Java + Node.js Full Stack Dev",
     "build": {
         "dockerfile": "Dockerfile"
     },
@@ -18,107 +18,26 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                // Java/Spring Boot 扩展
                 "vscjava.vscode-java-pack",
                 "vmware.vscode-spring-boot",
-                "vscjava.vscode-spring-initializr",
-                "vscjava.vscode-spring-boot-dashboard",
-                
-                // React/TypeScript 扩展
-                "ms-vscode.vscode-typescript-next",
                 "bradlc.vscode-tailwindcss",
                 "esbenp.prettier-vscode",
+                "ms-vscode.vscode-typescript-next",
                 "formulahendry.auto-rename-tag",
-                "christian-kohler.path-intellisense",
-                "ms-vscode.vscode-eslint",
-                "ms-vscode.vscode-json",
-                
-                // React 专用扩展
-                "dsznajder.es7-react-js-snippets",
-                "formulahendry.auto-close-tag",
-                "bradlc.vscode-tailwindcss",
-                "ms-vscode.vscode-css-peek",
-                
-                // 通用开发扩展
-                "ms-vscode.vscode-thunder-client",
-                "humao.rest-client",
-                "ms-vscode-remote.remote-containers"
+                "christian-kohler.path-intellisense"
             ],
             "settings": {
-                // Java 设置
                 "java.home": "/usr/local/sdkman/candidates/java/current",
-                "spring-boot.ls.java.home": "/usr/local/sdkman/candidates/java/current",
-                
-                // TypeScript/JavaScript 设置
-                "typescript.preferences.importModuleSpecifier": "relative",
-                "typescript.suggest.autoImports": true,
-                "javascript.suggest.autoImports": true,
-                
-                // Prettier 设置
-                "editor.defaultFormatter": "esbenp.prettier-vscode",
-                "editor.formatOnSave": true,
-                "editor.codeActionsOnSave": {
-                    "source.fixAll.eslint": true
-                },
-                
-                // Tailwind CSS 设置
-                "tailwindCSS.includeLanguages": {
-                    "typescript": "javascript",
-                    "typescriptreact": "javascript"
-                },
-                "tailwindCSS.experimental.classRegex": [
-                    "tw`([^`]*)",
-                    "tw=\"([^\"]*)",
-                    "tw={\"([^\"}]*)",
-                    "tw\\.\\w+`([^`]*)",
-                    "tw\\(.*?\\)`([^`]*)"
-                ],
-                
-                // 文件关联
-                "files.associations": {
-                    "*.tsx": "typescriptreact",
-                    "*.ts": "typescript"
-                },
-                
-                // 自动保存
-                "files.autoSave": "onFocusChange",
-                
-                // 工作区设置
-                "explorer.fileNesting.enabled": true,
-                "explorer.fileNesting.patterns": {
-                    "*.ts": "${capture}.js",
-                    "*.tsx": "${capture}.js",
-                    "package.json": "package-lock.json,yarn.lock,pnpm-lock.yaml"
-                }
+                "spring-boot.ls.java.home": "/usr/local/sdkman/candidates/java/current"
             }
         }
     },
     "forwardPorts": [
-        8080,  // Spring Boot 后端API
-        3000,  // React 开发服务器
-        3001,  // React Storybook (如果需要)
-        5432,  // PostgreSQL 
-        3306   // MySQL
+        8080,  // Spring Boot 默认端口
+        3000,  // React 开发服务器端口
+        5432,  // PostgreSQL (如果需要)
+        3306   // MySQL (如果需要)
     ],
-    "portsAttributes": {
-        "8080": {
-            "label": "Spring Boot API",
-            "onAutoForward": "notify"
-        },
-        "3000": {
-            "label": "React App",
-            "onAutoForward": "openBrowser"
-        },
-        "3306": {
-            "label": "MySQL Database",
-            "onAutoForward": "ignore"
-        }
-    },
-    "postCreateCommand": "bash .devcontainer/setup.sh",
-    "remoteUser": "vscode",
-    "workspaceFolder": "/workspace",
-    "mounts": [
-        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
-    ],
-    "overrideCommand": false
+    "postCreateCommand": "npm install -g yarn pnpm @angular/cli create-react-app",
+    "remoteUser": "vscode"
 }
